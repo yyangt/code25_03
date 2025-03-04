@@ -6,7 +6,7 @@ import time
 REPO_PATH = r"E:\Git\github"  # 替换为你的代码仓库路径
 GITHUB_REPO = "g1"        # 远程仓库名称
 COMMIT_MESSAGE = "Auto backup"  # 提交信息
-TIME_INTERVAL = "22:23"       # 定时时间（每天的 22:00）
+TIME_INTERVAL = "22:26"       # 定时时间（每天的 22:00）
 
 def git_push():
     """提交并推送代码到 GitHub"""
@@ -36,3 +36,5 @@ def schedule_backup():
 
 if __name__ == "__main__":
     schedule_backup()
+
+
