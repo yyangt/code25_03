@@ -1,3 +1,4 @@
+#反转链表
 class Solution:
   ListNode* reverseList(ListNode* head) {
       # ListNode* pre=nullptr,*cur=head;

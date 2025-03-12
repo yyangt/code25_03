@@ -1,3 +1,4 @@
+# 最富有客户的资产总量
 class Solution(object):
     def runningSum(self, nums):
         """

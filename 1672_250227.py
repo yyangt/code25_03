@@ -1,3 +1,4 @@
+# 一维数组的动态和
 class Solution:
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         '''m=len(accounts)
