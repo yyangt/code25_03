@@ -1,5 +1,8 @@
 {
   "files.associations": {
-    "11": "cpp"
+    "11": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
   }
 }
