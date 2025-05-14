@@ -1,0 +1,20 @@
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        g=[[float('inf')]*n for _ in range(n)]
+        for x,y,t in times:
+          g[x-1][y-1]=t
+        dist=[float('inf')]*n
+        dist[k-1]=0
+        used=[False]*n
+        for _ in range(n):
+          x=-1
+          for a,u in enumerate(used):
+            if not u and (x==-1 or dist[a]<dist[x]):
+              x=a
+            used[a]=True
+          for a,d in enumerate(g[x]):
+            dist[a]=min(dist[a],dist[x]+d)  
+        result=max(dist)
+        if result==float('inf'):
+          return -1
+        return result
