@@ -1,20 +1,45 @@
+import heapq
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+
+    '''def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         g=[[float('inf')]*n for _ in range(n)]
         for x,y,t in times:
           g[x-1][y-1]=t
+        used=[False]*n
         dist=[float('inf')]*n
         dist[k-1]=0
-        used=[False]*n
         for _ in range(n):
-          x=-1
-          for a,u in enumerate(used):
-            if not u and (x==-1 or dist[a]<dist[x]):
-              x=a
-            used[a]=True
-          for a,d in enumerate(g[x]):
-            dist[a]=min(dist[a],dist[x]+d)  
-        result=max(dist)
-        if result==float('inf'):
+            x=-1
+            for a,u in enumerate(used):
+              if not u and(x==-1 or dist[a]<dist[x]):
+                  x=a
+            used[x]==True
+            for b,d in enumerate(g[x]):
+              dist[b]=min(dist[b],dist[x]+d)
+        ans=max(dist)  
+        if ans==float('inf'):
           return -1
-        return result
+        return ans'''
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        # 改用邻接表存储图
+        graph = [[] for _ in range(n)]
+        for x, y, t in times:
+            graph[x-1].append((y-1, t))  # 目标节点转为 0-based
+        
+        dist = [float('inf')] * n
+        dist[k-1] = 0
+        
+        heap = []
+        heapq.heappush(heap, (0, k-1))
+        
+        while heap:
+            cur_dist, u = heapq.heappop(heap)
+            if cur_dist > dist[u]:  # 跳过旧数据
+                continue
+            for v, w in graph[u]:   # 只遍历实际邻居
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    heapq.heappush(heap, (dist[v], v))
+        
+        max_time = max(dist)
+        return max_time if max_time < float('inf') else -1
